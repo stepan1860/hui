@@ -54,6 +54,11 @@
 		.error{
 			color: #ff0000;
 		}
+		.okey{
+			background:  green;
+			color: #fff;
+			font-style: italic;
+		}
 
 	</style>
 </head>
@@ -73,7 +78,7 @@
 						</div>
 					</div>
 					<div class="col-1 site__theme_wrapper">
-						<label>Light site theme
+						<label class="okey">Light site theme
 							<input id="site_theme" type="checkbox">
 						</label>
 					</div>
@@ -102,6 +107,7 @@
 	</footer>
 
 	<script>
+
 		window.onload = () => {
 			console.log('ready');
 			const site_theme = document.querySelector('#site_theme');

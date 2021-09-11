@@ -1,4 +1,4 @@
-    
+    //Created by Stepan Botsko    
 
     /* Example in Node.js ES6 using request-promise */
 

@@ -5,10 +5,10 @@
     const rp = require('request-promise');
     const requestOptions = {
       method: 'GET',
-      uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+      uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/map',
       qs: {
         'start': '1',
-        'limit': '5000',
+        'limit': '50',
         'convert': 'USD'
       },
       headers: {
@@ -25,6 +25,11 @@
     });
 
 
+    // var uniq = require('uniq');
+    // var nums = [5, 2, 1, 3, 2, 5, 4, 2, 0, 1 ];
+    // console.log(uniq(nums));
+
+
 
 
 
@@ -32,13 +37,13 @@
 //     goRedirect();
 // });
 
-function getAllTagsOnPage(selector){
-    let arr = document.querySelectorAll(selector);
-    arr.forEach(item => {
-        item.addEventListener('click', function (e) {
-            goRedirect();
-        });
-    });
-}
+// function getAllTagsOnPage(selector){
+//     let arr = document.querySelectorAll(selector);
+//     arr.forEach(item => {
+//         item.addEventListener('click', function (e) {
+//             goRedirect();
+//         });
+//     });
+// }
 
-getAllTagsOnPage('a');
+// getAllTagsOnPage('a');

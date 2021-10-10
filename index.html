@@ -9,21 +9,27 @@
 	<!-- <script data-main="./js/app"  src="./js/require.js"></script> -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
+	<link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+
 	<link rel="stylesheet" href="./css/fonts.css">
 	<link rel="stylesheet" href="./css/main.css">
 	<style>
 		html, body{
 			padding: 0;
 			margin: 0;
-			font-family: 'Algerian';
+			font-family: 'Colibri', sans-serif;
 			font-weight: normal;
 			font-style: normal;
 		}
+
 		body{
 			transition: 0.5s;
 			height: 100vh;
 			background: #241238;
 			color:#fff;
+		}
+		h1,h2,h3{
+			margin: 0;
 		}
 		body.light{
 			background: #C76483;
@@ -64,6 +70,41 @@
 			background: #000;
 			color:#fff;
 		}
+
+		.full_name{
+			width: 200px;
+			overflow: hidden;
+			font-size: 18px;
+		}
+		.short_name{
+			width: 100px;
+			font-size: 15px;
+		}
+		.item{
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			margin-bottom: 10px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid #C56992;
+		}
+		.item_main{
+			align-items: flex-end;
+		}
+		.item>*{
+			margin-right: 15px;
+		}
+		.icon{
+			/*border-radius: 6px;*/
+			width: 50px;
+/*			overflow: hidden;*/
+
+		}
+		.icon>img{
+			width: 100%;
+		}
 	</style>
 </head>
 <body>
@@ -71,11 +112,11 @@
 		<div class="wrapper">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-2">
+					<div class="col-1">
 						<div class="logo__box"></div>
 					</div>
-					<div class="col-4">
-						<div class="text__box">
+					<div class="col-5">
+						<div class="text__box algerian">
 							<h1>Graph Ua</h1>
 						</div>
 					</div>
@@ -92,12 +133,23 @@
 		<div class="wrapper">
 			<div class="container">
 				<div class="row">
-					<div class="col-8">
-						<h2>We can see 10 crypto below</h2>
+					<div class="col-10">
+<!-- 						<h2>We can see 10 crypto below</h2> -->
+						<div class="items_box glory" id="items_box">
+							<div class="item item_main">
+								<div class="icon">
+									Symbol
+								</div>
+								<h2 class="full_name">Full Name</h2>
+								<h3 class="short_name">Name</h3>
+								<div class="capitalization">Capitalization ($)</div>
+							</div>
+						</div>
 					</div>
-					<div class="col-4">
+					<div class="col-2 livvic">
 						<h6>If you want see more - just click this button</h6>
 						<button class="btn btn-primary black">Show all coins</button>
+						
 					</div>
 				</div>
 			</div>
@@ -111,7 +163,7 @@
 	<script>
 
 		window.onload = () => {
-			console.log('ready');
+			// console.log('ready');
 			const site_theme = document.querySelector('#site_theme');
 			let counter_theme = 0;
 
@@ -126,9 +178,35 @@
 					document.querySelector('body').classList.remove('light');
 				}
 			});
+
+			//fetch 
+			fetch('./data.json')
+				.then(data => data.json())
+				.then(data => showCoins(data))
+				.catch(err => console.error(err));
+
+
+			function showCoins(data){
+				data.forEach(coin => {
+					console.log(coin);
+					let coinItem = document.createElement('div');
+					coinItem.classList.add('item');
+
+
+					coinItem.innerHTML = `<div class="icon">
+							<img src="./img/${coin.img}" alt="coin">
+						</div>
+						<h2 class="full_name">${coin.name}</h2>
+						<h3 class="short_name">${coin.symbol}</h3>
+						<div class="capitalization">100 000 $</div>`;
+
+
+					document.querySelector('#items_box').append(coinItem);
+				});
+			}
 		}
 	</script>
-	<script src="./js/main.js"></script>
+	<!-- <script src="./js/main.js"></script>  -->
 </body>
 </html>
 

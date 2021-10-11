@@ -25,25 +25,11 @@
     // });
 
 
-    //1. Import coingecko-api
-const CoinGecko = require('coingecko-api');
+//window.onload = () => {
+  // console.log('ready');
 
-//2. Initiate the CoinGecko API Client
-const CoinGeckoClient = new CoinGecko();
-
-//3. Make calls
-var func = async() => {
-  let data = await CoinGeckoClient.coins.all();
-  console.log(data);
-};
-
-func();
-
-
-
-    // var uniq = require('uniq');
-    // var nums = [5, 2, 1, 3, 2, 5, 4, 2, 0, 1 ];
-    // console.log(uniq(nums));
+  
+//}
 
 
 

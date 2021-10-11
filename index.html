@@ -162,49 +162,47 @@
 
 	<script>
 
-		window.onload = () => {
-			// console.log('ready');
-			const site_theme = document.querySelector('#site_theme');
-			let counter_theme = 0;
+const site_theme = document.querySelector('#site_theme');
+  let counter_theme = 0;
 
-			site_theme.addEventListener('change',(e)=>{
-				e.preventDefault();
-				console.log('theme was changed');
-				counter_theme++;
-				if (counter_theme % 2) {
-					document.querySelector('body').classList.add('light');
-				}
-				else{
-					document.querySelector('body').classList.remove('light');
-				}
-			});
+  site_theme.addEventListener('change',(e)=>{
+    e.preventDefault();
+    console.log('theme was changed');
+    counter_theme++;
+    if (counter_theme % 2) {
+      document.querySelector('body').classList.add('light');
+    }
+    else{
+      document.querySelector('body').classList.remove('light');
+    }
+  });
 
-			//fetch 
-			fetch('./data.json')
-				.then(data => data.json())
-				.then(data => showCoins(data))
-				.catch(err => console.error(err));
+  //fetch 
+  fetch('./js/server.js')
+    .then(data => {console.log(data); return data.json()})
+    .then(data => showCoins(data))
+    .catch(err => console.error(err));
 
 
-			function showCoins(data){
-				data.forEach(coin => {
-					console.log(coin);
-					let coinItem = document.createElement('div');
-					coinItem.classList.add('item');
+  function showCoins(data){
+    data.forEach(coin => {
+      console.log(coin);
+      let coinItem = document.createElement('div');
+      coinItem.classList.add('item');
 
 
-					coinItem.innerHTML = `<div class="icon">
-							<img src="./img/${coin.img}" alt="coin">
-						</div>
-						<h2 class="full_name">${coin.name}</h2>
-						<h3 class="short_name">${coin.symbol}</h3>
-						<div class="capitalization">100 000 $</div>`;
+      coinItem.innerHTML = `<div class="icon">
+          <img src="./img/${coin.img}" alt="coin">
+        </div>
+        <h2 class="full_name">${coin.name}</h2>
+        <h3 class="short_name">${coin.symbol}</h3>
+        <div class="capitalization">100 000 $</div>`;
 
 
-					document.querySelector('#items_box').append(coinItem);
-				});
-			}
-		}
+      document.querySelector('#items_box').append(coinItem);
+    });
+  }
+		
 	</script>
 	<script src="./js/main.js"></script>
 </body>
